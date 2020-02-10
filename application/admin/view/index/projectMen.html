@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en" style="background-color: #f2f2f2;color: #666;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>项目管理</title>
+    <link rel="stylesheet" type="text/css" href="/hx1903/Ym-master/public/static/plugins/layui/css/layui.css"> 
+    <link rel="stylesheet" type="text/css" href="/hx1903/Ym-master/public/static/admin/css/staff.css"> 
+
+</head>
+<body class="layui-layout-body" layadmin-themealias="default">
+    <div class="layui-fluid">
+        <div class="layui-card" style="margin-top: 32px;">
+                <div class="layui-card-header">
+                        <h1>项目管理</h1>
+                </div>
+                <div class="layui-fluid layui-form" style="margin-top: 10px;">
+                    <div class="layui-input-inline">
+                        <input type="text" id="account" name="title" required lay-verify="required" placeholder="项目名字" autocomplete="off" class="layui-input"> 
+                    </div>
+                    <button type="button" class="layui-btn" id="search">查询</button>
+                    <div style="width: 116px;margin-top: 12px;" class="layui-card">
+                        <select name="city" class="layui-input" lay-verify="" id="select">
+                            <option value="-1" >请选择状态</option>
+                            <option value="1">上架</option>
+                            <option value="2">下架</option>
+                        </select> 
+                    </div>
+                    
+                </div>
+                <div class="layui-fluid" >
+                    <table id="release" lay-filter="test"></table>
+                </div>
+                <div class="layui-fluid">
+                    <span style="display: inline-block;" ></span>
+                </div>
+        </div>
+    </div>
+    <!-- 查看项目-->
+    <div class="addUser" style="height: 530px;margin-top: -265px;">
+            <div class="addUser_title">查看服务</div>
+            <span class="addUser_out">
+                <a class="out close"></a>
+            </span>
+            <div class="add_min">
+                <div class="add_box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务名称</label>
+                        <div class="layui-input-inline " style="width: 260px;">
+                            <input type="text" name="loginname" readonly lay-verify="required" placeholder="请输入种类名称" autocomplete="off" class="layui-input" id="kid">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务描述</label>
+                        <div class="layui-input-inline " style="width: 260px;">
+                            <input type="text" name="nickname" readonly lay-verify="required" placeholder="请输入佣金比例(0%-100%)" autocomplete="off" class="layui-input" id="name">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">服务价格</label>
+                        <div class="layui-input-inline " style="width: 260px;">
+                            <input type="text" name="nickname" readonly lay-verify="required" placeholder="请输入佣金比例(0%-100%)" autocomplete="off" class="layui-input" id="describe">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">上架时间</label>
+                        <div class="layui-input-inline " style="width: 260px;">
+                            <input type="text" name="nickname" readonly lay-verify="required" placeholder="请输入佣金比例(0%-100%)" autocomplete="off" class="layui-input" id="price">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">下架时间</label>
+                        <div class="layui-input-inline " style="width: 260px;">
+                             <input type="text" name="nickname" readonly lay-verify="required" placeholder="请输入佣金比例(0%-100%)" autocomplete="off" class="layui-input" id="status">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-from-label">服务展示</label>
+                        
+                        
+                                <div class="layui-carousel" id="test1" style="margin: -10px 0 0 72px;">
+                                        <div carousel-item="" class="imgItems">
+                                        </div>
+                                </div>
+                        
+                        
+                    </div>
+                    <!-- <div class="layui-form-item">
+                            <label class="layui-form-label">服务名称</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <input type="text" name="nickname" lay-verify="required" placeholder="请输入佣金比例(0%-100%)" autocomplete="off" class="layui-input" id="nickName">
+                            </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    <script type="text/javascript" src="/hx1903/Ym-master/public/static/plugins/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/hx1903/Ym-master/public/static/plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="/hx1903/Ym-master/public/static/jq.js"></script>
+    <script type="text/javascript" src="/hx1903/Ym-master/public/static/admin/js/projectMen.js"></script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        {{# if(d.status==2){}}	
+        <a class="layui-btn  layui-btn-xs" lay-event="up">上架</a>
+        {{#} else {}}
+        <a class="layui-btn 
+        layui-btn-xs" lay-event="out">下架</a>
+        {{#}}}
+    </script>
+    
+</body>
+</html>

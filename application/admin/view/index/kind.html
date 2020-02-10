@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" style="    background-color: #f2f2f2;color: #666;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>项目种类管理</title>
+    <link rel="stylesheet" type="text/css" href="/hx1903/Ym-master/public/static/plugins/layui/css/layui.css"> 
+    <link rel="stylesheet" type="text/css" href="/hx1903/Ym-master/public/static/admin/css/staff.css"> 
+
+</head>
+<body>
+    <div class="layui-fluid">
+    <div id="app" class="layui-card" style="margin-top: 32px;">
+            <div class="layui-card-header">
+                <h1>项目种类管理</h1>
+            </div>
+            <div class="layui-fluid" style="margin-top: 10px;">
+            <div class="layui-input-inline">
+                <input type="text" id="account" name="title" required lay-verify="required" placeholder="种类名称" autocomplete="off" class="layui-input"> 
+            </div>
+            <button type="button" class="layui-btn" id="search">查询</button>
+            <button type="button" class="layui-btn" id="add">添加项目种类</button>
+            </div>
+            <div class="layui-fluid">
+                <table id="kind" lay-filter="test"></table>
+            </div>
+            <div class="layui-fluid">
+                    <span style="display: inline-block;" id="flag"></span>
+            </div>
+            <!-- 添加项目种类 -->
+            <div class="addUser">
+                <div class="addUser_title">添加项目种类</div>
+                <span class="addUser_out">
+                    <a class="out close"></a>
+                </span>
+                <div class="add_min">
+                    <div class="add_box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">种类名称</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <input type="text" name="loginname" lay-verify="required" placeholder="请输入种类名称" autocomplete="off" class="layui-input" id="accounts">
+                              </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">佣金比例</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <input type="text" name="nickname" lay-verify="required" placeholder="请输入佣金比例(0%-100%)" autocomplete="off" class="layui-input" id="nickName">
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-layer-btn layui-layer-btn-" style="padding: 32px 128px 12px;"><a class="layui-layer-btn0 sure">确定</a><a class="layui-layer-btn1 close">取消</a></div>
+            </div>
+            <!-- 修改项目种类 -->
+            <div class="modify">
+                <div class="addUser_title">修改项目种类</div>
+                <span class="addUser_out">
+                    <a class="out close"></a>
+                </span>
+                <div class="add_min">
+                    <div class="add_box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">种类名称</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <input type="text" name="loginname" lay-verify="required" placeholder="请输入种类名称" autocomplete="off" class="layui-input" id="account-name">
+                              </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">佣金比例</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <input type="text" name="nickname" lay-verify="required" placeholder="请输入佣金比例" autocomplete="off" class="layui-input" id="setNickname">
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-layer-btn layui-layer-btn-" style="padding: 32px 128px 12px;"><a class="layui-layer-btn0 confirm">确定</a><a class="layui-layer-btn1 close">取消</a></div>
+            </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="/hx1903/Ym-master/public/static/plugins/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/hx1903/Ym-master/public/static/jq.js"></script>
+    <script type="text/javascript" src="/hx1903/Ym-master/public/static/admin/js/kind.js"></script>
+    <script type="text/html" id="barDemo">
+	    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit">修改</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	    
+	</script>
+</body>
+</html>

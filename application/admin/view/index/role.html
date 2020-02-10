@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html  style="background-color: #f2f2f2;color: #666;">
+<head>
+  <meta charset="utf-8">
+  <title>角色管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/hx1903/Ym-master/public/static/plugins/tree/css/demo.css" type="text/css">
+  <link rel="stylesheet" href="/hx1903/Ym-master/public/static/plugins/tree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+  <link rel="stylesheet" href="/hx1903/Ym-master/public/static/plugins/layui/css/layui.css"  media="all">
+</head>
+<body>
+
+	<div class="layui-fluid">
+		<div class="layui-card" style="margin-top: 32px;">
+			<div class="layui-card-header">
+                <h1 style="text-align: left;font-size: 27px;font-weight: normal;line-height: 43px;">角色管理</h1>
+            </div>
+			<div style="margin: 20px 20px;">
+				<button data-method="offset" data-type="1" class="layui-btn" id="openBox">添加角色</button>
+			</div>
+			
+			<div class="layui-fluid" >
+				<table class="layui-hide" id="test" lay-filter="test"></table>
+			</div>
+			<div class="layui-fluid">
+                    <span style="display: inline-block;"></span>
+            </div>
+		</div>
+	</div>
+
+	<!-- 添加角色框 -->
+	<div id="addBox" hidden="hidden" style="margin: 20px 20px;">
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">角色名</label>
+			    <div class="layui-input-block">
+			      <input type="text" placeholder="请输入角色名" class="layui-input" id="rolename">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">角色描述</label>
+			    <div class="layui-input-block">
+			      <input type="text" placeholder="请输入角色描述" class="layui-input" id="roledescribe">
+			    </div>
+			</div>
+
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" id="addRole">添加角色</button>
+			    </div>
+			</div>
+	</div>
+
+	<!-- 修改角色框 -->
+	<div id="editBox" hidden="hidden" style="margin: 20px 20px;">
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">角色名</label>
+			    <div class="layui-input-block">
+			      <input type="text" placeholder="请输入角色名" class="layui-input" id="editrolename">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">角色描述</label>
+			    <div class="layui-input-block">
+			      <input type="text" placeholder="请输入角色描述" class="layui-input" id="editroledescribe">
+			    </div>
+			</div>
+			<input type="text" hidden="hidden" value="" id="roleid">
+
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" id="ediaddRole">修改</button>
+			    </div>
+			</div>
+	</div>
+
+	<!-- 角色权限框 -->
+	<div class="zTreeDemoBackground left" hidden="hidden" id="powerBox">
+		<ul id="treeDemo" class="ztree" style="height: 315px;margin: 10px 30px;margin-left: 9px;"></ul>
+		<button style="margin: -8px auto;display: block;" class="layui-btn layui-btn-sm" id="editPower">保存</button>
+		<input type="text" name="" hidden="hidden" value="" id="powerid">
+	</div>
+
+
+	<script type="text/html" id="barDemo">
+		{{# if(d.id==1){}}
+	    <a class="layui-btn layui-btn-xs layui-btn-disabled">修改</a>
+	    <a class="layui-btn layui-btn-xs layui-btn-disabled">权限</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs layui-btn-disabled">删除</a>
+	    {{#} else {}}
+		<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+	    <a class="layui-btn layui-btn-xs" lay-event="power">权限</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+	    {{#}}}
+	</script>
+	             
+	          
+	<script src="/hx1903/Ym-master/public/static/plugins/layui/layui.js" charset="utf-8"></script>
+	<script src="/hx1903/Ym-master/public/static/jq.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/hx1903/Ym-master/public/static/plugins/tree/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="/hx1903/Ym-master/public/static/plugins/tree/js/jquery.ztree.excheck.js"></script>
+	<script src="/hx1903/Ym-master/public/static/admin/js/role.js" charset="utf-8"></script>
+
+
+</body>
+</html>

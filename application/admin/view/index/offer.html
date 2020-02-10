@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html  style="background-color: #f2f2f2;color: #666;">
+<head>
+  <meta charset="utf-8">
+  <title>应聘管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/hx1903/Ym-master/public/static/plugins/layui/css/layui.css"  media="all">
+</head>
+<body>
+
+	<div class="layui-fluid">
+		<div class="layui-card" style="margin-top: 32px;">
+			<div class="layui-card-header">
+                <h1 style="text-align: left;font-size: 27px;font-weight: normal;line-height: 43px;">应聘管理</h1>
+            </div>
+			
+			<div class="layui-fluid" >
+				<table class="layui-hide" id="test" lay-filter="test"></table>
+			</div>
+			<div class="layui-fluid">
+                    <span style="display: inline-block;"></span>
+            </div>
+		</div>
+	</div>
+
+	<!-- 详情框 -->
+	<div id="detailBox" hidden="hidden" style="margin: 20px 20px;width: 320px;">
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">应聘者姓名</label>
+			    <div class="layui-input-block">
+			      <p id="offername" style="line-height: 38px;text-align: center;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">手机号码</label>
+			    <div class="layui-input-block">
+			       <p id="offerphone" style="line-height: 38px;text-align: center;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">应聘服务项目</label>
+			    <div class="layui-input-block">
+			       <p id="offerwork" style="line-height: 38px;text-align: center;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">地址</label>
+			    <div class="layui-input-block">
+			       <p id="offeraddress" style="line-height: 38px;text-align: center;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">个人介绍</label>
+			    <div class="layui-input-block">
+			       <p id="offercontent" style="line-height: 38px;text-align: center;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">应聘时间</label>
+			    <div class="layui-input-block">
+			       <p id="offeraddtime" style="line-height: 38px;text-align: center;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">状态</label>
+			    <div class="layui-input-block">
+			       <p id="offerstatus" style="line-height: 38px;text-align: center;"></p>
+			    </div>
+			</div>
+
+	</div>
+
+	<!-- 同意录入信息框 -->
+	<div id="agreeBox" hidden="hidden" style="margin: 20px 20px;">
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">应聘者姓名</label>
+			    <div class="layui-input-block">
+		    	    <input type="text" placeholder="请输入应聘者姓名" class="layui-input" id="agreename">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">手机号码</label>
+			    <div class="layui-input-block">
+			    	<input type="text" disabled="disabled" placeholder="请输入手机号码" class="layui-input" id="agreephone">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">应聘服务项目</label>
+			    <div class="layui-input-block">
+			    	<input type="text" disabled="disabled" placeholder="请输入应聘服务项目" class="layui-input" id="agreework">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">地址</label>
+			    <div class="layui-input-block">
+			       <input type="text" placeholder="请输入地址" class="layui-input" id="agreeaddress">
+			    </div>
+			</div>
+
+			<input type="text" name="" hidden="hidden" value="" id="serviceid">
+
+			<input type="text" name="" hidden="hidden" value="" id="offerid">
+
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" id="agreeOffer">录入</button>
+			    </div>
+			</div>
+
+	</div>
+
+
+
+	<script type="text/html" id="barDemo">
+		<a class="layui-btn layui-btn-xs" lay-event="see">查看</a>
+		{{# if(d.status==1){}}
+	    <a class="layui-btn layui-btn-xs" lay-event="agree">同意</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse">拒绝</a>
+	    {{#}}}
+	</script>
+	             
+	          
+	<script src="/hx1903/Ym-master/public/static/plugins/layui/layui.js" charset="utf-8"></script>
+	<script src="/hx1903/Ym-master/public/static/jq.js" charset="utf-8"></script>
+	<script src="/hx1903/Ym-master/public/static/admin/js/offer.js" charset="utf-8"></script>
+
+
+</body>
+</html>

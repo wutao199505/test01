@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html  style="background-color: #f2f2f2;color: #666;">
+<head>
+  <meta charset="utf-8">
+  <title>售后管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/hx1903/Ym-master/public/static/plugins/layui/css/layui.css"  media="all">
+</head>
+<body>
+
+	<div class="layui-fluid">
+		<div class="layui-card" style="margin-top: 32px;">
+			<div class="layui-card-header">
+                <h1 style="text-align: left;font-size: 27px;font-weight: normal;line-height: 43px;">售后管理</h1>
+            </div>
+			
+			<div class="layui-fluid" >
+				<table class="layui-hide" id="test" lay-filter="test"></table>
+			</div>
+			<div class="layui-fluid">
+                    <span style="display: inline-block;"></span>
+            </div>
+		</div>
+	</div>
+
+	<!-- 详情框 -->
+	<div id="detailBox" hidden="hidden" style="margin: 20px 20px;width: 320px;">
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">订单编号</label>
+			    <div class="layui-input-block">
+			      <p id="ordernum" style="line-height: 38px;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label" style="text-align: center;">售后原因</label>
+			    <div class="layui-input-block">
+			       <textarea id="afcontent" disabled="" class="layui-textarea" style="width: 300px;"></textarea>
+			    </div>
+			</div>
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">申请时间</label>
+			    <div class="layui-input-block">
+			       <p id="aftime" style="line-height: 38px;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">处理人</label>
+			    <div class="layui-input-block">
+			       <p id="afpeople" style="line-height: 38px;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label" style="text-align: center;">处理描述</label>
+			    <div class="layui-input-block">
+			       <textarea id="afreason" disabled="" class="layui-textarea" style="width: 300px;"></textarea>
+			    </div>
+			</div>
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">退款金额</label>
+			    <div class="layui-input-block">
+			       <p id="afmoney" style="line-height: 38px;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">状态</label>
+			    <div class="layui-input-block">
+			       <p id="afstatus" style="line-height: 38px;"></p>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">售后图片</label>
+			    <div class="layui-input-block" id="afimg">
+			       <img src="">
+			    </div>
+			</div>
+
+	</div>
+
+	<!-- 同意售后弹框 -->
+	<div id="agreeBox" hidden="hidden" style="margin: 20px 20px;">
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label" style="text-align: center;">同意说明</label>
+			    <div class="layui-input-block">
+			       <textarea id="agreecontent" class="layui-textarea"></textarea>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label" style="text-align: center;">退款金额</label>
+			    <div class="layui-input-block">
+			    	<input type="text" placeholder="请输入退款金额" class="layui-input" id="agreemoney">
+			    </div>
+			</div>
+
+			<input type="text" name="" hidden="hidden" value="" id="afid">
+
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" id="agreeaftersale">确认</button>
+			    </div>
+			</div>
+
+	</div>
+
+	<!-- 拒绝售后弹框 -->
+	<div id="refuseBox" hidden="hidden" style="margin: 20px 20px;">
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label" style="text-align: center;">拒绝说明</label>
+			    <div class="layui-input-block">
+			       <textarea id="refusecontent" class="layui-textarea"></textarea>
+			    </div>
+			</div>
+
+			<input type="text" name="" hidden="hidden" value="" id="rafid">
+
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" id="refuseaftersale">确认</button>
+			    </div>
+			</div>
+
+	</div>
+
+
+
+	<script type="text/html" id="barDemo">
+		<a class="layui-btn layui-btn-xs" lay-event="see">查看</a>
+		{{# if(d.status==1){}}
+	    <a class="layui-btn layui-btn-xs" lay-event="agree">同意</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse">拒绝</a>
+	    {{#}}}
+	</script>
+	             
+	          
+	<script src="/hx1903/Ym-master/public/static/plugins/layui/layui.js" charset="utf-8"></script>
+	<script src="/hx1903/Ym-master/public/static/jq.js" charset="utf-8"></script>
+	<script src="/hx1903/Ym-master/public/static/admin/js/aftersale.js" charset="utf-8"></script>
+
+
+</body>
+</html>

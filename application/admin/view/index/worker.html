@@ -1,0 +1,160 @@
+
+ <!DOCTYPE html>
+ <html lang="en" style="    background-color: #f2f2f2;color: #666;">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>外派员工管理</title>
+     <link rel="stylesheet" type="text/css" href="/hx1903/Ym-master/public/static/plugins/layui/css/layui.css"> 
+     <link rel="stylesheet" type="text/css" href="/hx1903/Ym-master/public/static/admin/css/staff.css"> 
+ 
+ </head>
+ <body>
+     <div class="layui-fluid">
+     <div id="app" class="layui-card" style="margin-top: 32px;">
+             <div class="layui-card-header">
+                 <h1>外派员工管理</h1>
+             </div>
+             <div class="layui-fluid" style="margin-top: 10px;">
+             <div class="layui-input-inline">
+                 <input type="text" id="worekrName" name="title" required lay-verify="required" placeholder="请输入外派员工电话" autocomplete="off" class="layui-input"> 
+             </div>
+             <button type="button" class="layui-btn" id="search">查询</button>
+             <button type="button" class="layui-btn" id="add">添加外派员工</button>
+             </div>
+             <div class="layui-fluid">
+                 <table id="worker" lay-filter="test"></table>
+             </div>
+             <div class="layui-fluid">
+                     <span style="display: inline-block;"></span>
+             </div>
+             <!-- 添加外派员工 -->
+             <div class="addUser" style="height: 370px">
+                 <div class="addUser_title">添加外派员工</div>
+                 <span class="addUser_out">
+                     <a class="out close"></a>
+                 </span>
+                 <div class="add_min">
+                     <div class="add_box">
+                         <div class="layui-form-item">
+                             <label class="layui-form-label">姓名</label>
+                             <div class="layui-input-inline " style="width: 260px;">
+                                 <input type="text" name="name" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input" id="name">
+                               </div>
+                         </div>
+                         <div class="layui-form-item">
+                             <label class="layui-form-label">电话</label>
+                             <div class="layui-input-inline " style="width: 260px;">
+                                 <input type="text" name="phone" lay-verify="required" placeholder="请输入用户电话" autocomplete="off" class="layui-input" id="phone">
+                               </div>
+                         </div>
+                         <div class="layui-form-item">
+                                 <label class="layui-form-label">归属项目</label>
+                                 <div class="layui-input-block">
+                                   <select name="city" lay-verify="required" id="sid" style="width: 260px;height: 35px;">
+                                   </select>
+                                 </div>
+                         </div>
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">家庭地址</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <textarea name="" id="address" cols="30" rows="10" style="width: 258px;height: 58px;"></textarea>
+                              </div>
+                        </div>
+                     </div>
+                 </div>
+                 <div class="layui-layer-btn layui-layer-btn-" style="padding: 3px 128px 12px;"><a class="layui-layer-btn0 sure">确定</a><a class="layui-layer-btn1 close">取消</a></div>
+             </div>
+             <!-- 修改外派员工信息 -->
+             <div class="modify" style="    height: 400px ">
+                 <div class="addUser_title">修改外派员工信息</div>
+                 <span class="addUser_out">
+                     <a class="out close"></a>
+                 </span>
+                 <div class="add_min">
+                     <input type="hidden" id="id">
+                     <div class="add_box">
+                         <div class="layui-form-item">
+                             <label class="layui-form-label">姓名</label>
+                             <div class="layui-input-inline " style="width: 260px;">
+                                 <input type="text" name="loginname" lay-verify="required" placeholder="请输入外派员工姓名" autocomplete="off" class="layui-input" id="account-name">
+                               </div>
+                         </div>
+                         <div class="layui-form-item">
+                             <label class="layui-form-label">电话</label>
+                             <div class="layui-input-inline " style="width: 260px;">
+                                 <input type="text" name="nickname" lay-verify="required" placeholder="请输入外派员工电话" autocomplete="off" class="layui-input" id="setNickname">
+                               </div>
+                         </div>
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">地址</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <textarea name="" id="addr" cols="30" rows="10" style="width: 258px; height: 45px;"></textarea>
+                                <!-- <input type="text" name="addr" lay-verify="required" placeholder="请输入外派员工地址" autocomplete="off" class="layui-input" id="addr"> -->
+                              </div>
+                        </div>
+                         <div class="layui-form-item">
+                                 <label class="layui-form-label">状态</label>
+                                 <div class="layui-input-block">
+                                   <select name="city" lay-verify="required" id="status" style="width: 260px;height: 35px;">
+                                     <option value=""></option>
+                                     <option value="1">空闲</option>
+                                     <option value="2">安排工作</option>
+                                     <option value="3">请假</option>
+                                   </select>
+                                 </div>
+                         </div>
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">归属项目</label>
+                            <div class="layui-input-block">
+                              <select name="city" lay-verify="required" id="sidTwo" style="width: 260px;height: 35px;">
+                              </select>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="layui-layer-btn layui-layer-btn-" style="padding: 0px 128px 12px;"><a class="layui-layer-btn0 confirm">确定</a><a class="layui-layer-btn1 close">取消</a></div>
+             </div>
+             <!-- 查看用户信息 -->
+             <div class="editor">
+                 <div class="addUser_title">查看外派员工信息</div>
+                 <span class="addUser_out">
+                     <a class="out close"></a>
+                 </span>
+                 <div class="add_min">
+                     <div class="add_box">
+                         <div class="layui-form-item">
+                             <label class="layui-form-label">姓名</label>
+                             <div class="layui-input-inline " style="width: 260px;">
+                                 <input readonly type="text" name="workerName" lay-verify="required" placeholder="外派员工姓名" autocomplete="off" class="layui-input" id="workerName">
+                               </div>
+                         </div>
+                         <div class="layui-form-item">
+                             <label class="layui-form-label">电话</label>
+                             <div class="layui-input-inline " style="width: 260px;">
+                                 <input readonly type="text" name="workerPhone" lay-verify="required" placeholder="外派员工电话" autocomplete="off" class="layui-input" id="workerPhone">
+                               </div>
+                         </div>
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">地址</label>
+                            <div class="layui-input-inline " style="width: 260px;">
+                                <input readonly type="text" name="workerAddr" lay-verify="required" placeholder="外派员工地址" autocomplete="off" class="layui-input" id="workerAddr">
+                              </div>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+             
+     </div>
+     </div>
+     <script type="text/javascript" src="/hx1903/Ym-master/public/static/plugins/layui/layui.all.js"></script>
+     <script type="text/javascript" src="/hx1903/Ym-master/public/static/jq.js"></script>
+     <script type="text/javascript" src="/hx1903/Ym-master/public/static/admin/js/worker.js"></script>
+     <script type="text/html" id="barDemo">
+       <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+       <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+     </script>
+ </body>
+ </html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>少年郎家政—个人中心</title>
+</head>
+<link href="../../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="../../static/home/css/top.css" rel="stylesheet">
+<link href="../../static/home/css/foot.css" rel="stylesheet">
+<link href="../../static/home/css/entrybox.css" rel="stylesheet">
+<link href="../../static/home/css/myself.css" rel="stylesheet">
+<link rel="shortcut icon" href="/hx1903/Ym-master/public/static/admin/images/favicon.ico" type="image/x-icon">
+
+<body>
+  <div id="app">
+    <!-- 头部 -->
+    <header>
+            <nav class="navbar navbar-default">
+            <div id="backbanner">
+                <div class="headerDiv"  style="background-color: #f8f8f8">
+                <div class="container">
+                    <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="../../static/home/images/index/logo.png" class="headimg img-responsive" >
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav"  id="titleBox">
+                        <li><a href="/hx1903/Ym-master/public/">少年郎首页</a></li>
+                        <li><a href="/hx1903/Ym-master/public/index.php/home/service/service">优质服务</a></li>
+                        <li><a href="/hx1903/Ym-master/public/index.php/home/activity/activity">热门活动</a></li>
+                        <li><a href="/hx1903/Ym-master/public/index.php/home/Offer/offer">应聘职位</a></li>
+                    </ul>
+                        <ul class="nav navbar-nav navbar-right unLogin">
+                        <button  type="button" class="btn btn-primary" onclick="loginShow()">登录</button>
+                        <button  type="button" class="btn btn-info" onclick="regShow()">注册</button>
+                    </ul>
+                    <ul  class="nav navbar-nav navbar-right tiaozhuan" style="display: none">
+                        <li  id="huanying">欢迎您：<span id="UserAccount" ></span>
+                        <div id="zhuxiao">
+                            <a  href="/hx1903/Ym-master/public/home/myself/myself"><p>个人中心</p></a>
+                            <p  onclick="exitUser()">注销</p>
+                        </div>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </nav>
+    </header>
+
+    <div class="container content">
+      <div class="row" style="height: 550px;">
+        <div class="col-md-2 leftBox">
+          <ul>
+            <li style="color:orange;" @click="infoShow()" class="changeLi">个人信息</li>
+            <li @click="changeShow()" class="changeLi">修改资料</li>
+            <li @click="orderShow()" class="changeLi">我的订单</li>
+          </ul>
+        </div>
+        <div class="col-md-10 rightBox">
+          <div class="myInfo" v-show="showInfo">
+            <table class="table table-hover">
+              <tr>
+                <td>万事如意：<span style="color: red">{{name}}</span></td>
+                <td style="height: 94px;">
+                  <div><img :src="head" alt="" style="height: 80px;width: 80px;border-radius: 50%;"></div>
+              </tr>
+              <tr>
+                <td>注册时间：</td>
+                <td><span style="color: red">{{regtime}}</span></td>
+              </tr>
+              <tr>
+                <td>手机号码：</td>
+                <td>
+                  <div> <span style="color: red">{{phone}}</span></div>
+              </tr>
+              <tr>
+                <td>收货地址：</td>
+                <td>
+                  <div> <span style="color: red">{{address}}</span></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="myInfo" v-show="showChange">
+            <table class="table table-hover">
+              <tr>
+                <td class="tittleLi">头像：</td>
+                <td style="height: 94px;">
+                  <div v-show="headShow"><img :src="head" alt="" style="height: 80px;width: 80px;border-radius: 50%"></div>
+                  <div v-show="!headShow" style="width: 180px">
+                    <input type="file" id="photo" style="margin: 0px;">
+                    <input type="submit" @click="uploadImg()" value="上传" class="btn publishBtn ">
+                  </div>
+                </td>
+                <td> <button type="button" class="btn btn-primary" @click="headShow = !headShow">修改</button> </td>
+              </tr>
+              <tr>
+                <td class="tittleLi">手机号码：</td>
+                <td>
+                  <div v-show="phoneShow"> <span style="color: red">{{phone}}</span></div>
+
+                  <div v-show="!phoneShow">
+                    <input type="text" v-model="newPhone" placeholder="填写手机号码" style="margin: 0 0 10px  0">
+                    <button type="button" class="btn btn-success" @click="changPhone">提交</button>
+                  </div>
+                </td>
+                <td> <button type="button" class="btn btn-primary" @click="phoneShow = !phoneShow">修改</button> </td>
+              </tr>
+              <tr>
+                <td class="tittleLi">收货地址：</td>
+                <td style="    height: 77px;">
+                  <div v-show="addrShow"> <span style="color: red">{{address}}</span></div>
+                  <div v-show="!addrShow">
+                    <textarea name="" id="" cols="30" rows="10" v-model="newAddress"
+                      style="height: 46px;width: 177px;margin: 0 0 10px  0">{{address}}</textarea>
+                    <button type="button" class="btn btn-success" @click="changAddress">提交</button>
+                  </div>
+                </td>
+                <td> <button type="button" class="btn btn-primary" @click="addrShow = !addrShow">修改</button> </td>
+              </tr>
+              <tr>
+                <td class="tittleLi">您的密码：</td>
+                <td style="    width: 327px;">
+                  <div v-show="pwdShow"> <input type="password" v-model="pwd" readonly></div>
+                  <div v-show="!pwdShow">
+                    <input type="password" v-model="oldPwd" placeholder="输入原来密码">
+                    <input type="password" v-model="newPwd" placeholder="输入新密码" style="margin: 10px 0">
+                    <button type="button" class="btn btn-success" @click="changPwd">提交</button>
+                  </div>
+                </td>
+                <td> <button type="button" class="btn btn-primary" @click="pwdShow = !pwdShow">修改</button> </td>
+              </tr>
+            </table>
+
+          </div>
+
+          <div v-show="showOredr">
+            <div class="row payTitile">
+              <div class="col-xs-6" id="unPay"  style="color: orange;"  @click="unPay">未支付</div>
+              <div class="col-xs-6" id="oldPay" @click="oldPay">已支付</div>
+            </div>
+            <!-- 打印内容框 -->
+            <div class="container-fluid pcOrder" style="border:1px solid #ddd">
+              <!-- 订单存放框 -->
+              <div class="row orderAll">
+                <div class="col-xs-6">
+                  <h4><span>服务名字：servicename</span></h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4><span>下单时间：ordertime</span></h4>
+                </div>
+                <div class="col-xs-3">
+                  <p>订单编号：<span>ordernum</span> </p>
+                  <p>联系电话：<span>phone</span></p>
+                  <p>联系人：<span>orderman</span></p>
+
+                </div>
+                <div class="col-xs-3">
+                  <p> 家庭地址：address</p>
+                </div>
+                <div class="col-xs-3">
+                  <p> 付款金额：<span>price</span></p>
+                  <p> 订单状态：<span>未付款</span></p>
+                  <p> 服务类型：<span>type</span></p>
+                </div>
+                <div class="col-xs-3">
+                  <button class="btn btn-success">支付</button>
+                  <button class="btn btn-danger" style=" margin: 10px 0">取消订单</button>
+                </div>
+              </div>
+              <div class="row orderAll">
+
+                <div class="col-xs-6">
+                  <h4><span>服务名字：servicename</span></h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4><span>下单时间：ordertime</span></h4>
+                </div>
+                <div class="col-xs-3">
+                  <p>订单编号：<span>ordernum</span> </p>
+                  <p>联系电话：<span>phone</span></p>
+                  <p>联系人：<span>orderman</span></p>
+
+                </div>
+                <div class="col-xs-3">
+                  <p> 家庭地址：<span>address</span></p>
+                </div>
+                <div class="col-xs-3">
+                  <p> 付款金额：<span>price</span></p>
+                  <p> 订单状态：<span>待安排</span></p>
+                  <p> 服务类型：<span>type</span></p>
+                </div>
+                <div class="col-xs-3">
+                  <button class="btn btn-danger" style=" margin: 10px 0">取消订单</button>
+                </div>
+              </div>
+              <div class="row orderAll">
+                <div class="col-xs-6">
+                  <h4><span>服务名字：servicename</span></h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4><span>下单时间：ordertime</span></h4>
+                </div>
+
+                <div class="col-xs-3">
+                  <p>订单编号：<span>ordernum</span> </p>
+                  <p>联系电话：<span>phone</span></p>
+                  <p>联系人：<span>orderman</span></p>
+
+                </div>
+                <div class="col-xs-3">
+                  <p> 家庭地址：<span>address</span></p>
+                  <p> 服务员工：<span>wname</span></p>
+                  <p> 员工电话：<span>workerTel</span></p>
+
+                </div>
+                <div class="col-xs-3">
+                  <p> 付款金额：<span>price</span></p>
+                  <p> 订单状态：<span>已安排</span></p>
+                  <p> 服务类型：<span>type</span></p>
+                </div>
+                <div class="col-xs-3">
+                  <button class="btn btn-success" style=" margin: 10px 0">确认完成</button>
+                </div>
+
+              </div>
+              <div class="row orderAll">
+                <div class="col-xs-6">
+                  <h4><span>服务名字：servicename</span></h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4><span>下单时间：ordertime</span></h4>
+                </div>
+                <div class="col-xs-3">
+                  <p>订单编号：<span>ordernum</span> </p>
+                  <p>联系电话：<span>phone</span></p>
+                  <p>联系人：<span>orderman</span></p>
+
+                </div>
+                <div class="col-xs-3">
+                  <p> 家庭地址：<span>address</span></p>
+                  <p> 服务员工：<span>wname</span></p>
+                  <p> 员工电话：<span>workerTel</span></p>
+
+                </div>
+                <div class="col-xs-3">
+                  <p> 付款金额：<span>price</span></p>
+                  <p> 订单状态：<span>已完成</span></p>
+                  <p> 服务类型：<span>type</span></p>
+                </div>
+                <div class="col-xs-3">
+                  <button class="btn btn-success" style=" margin: 10px 0">评价</button>
+                  <button class="btn btn-danger" style=" margin: 10px 0">售后</button>
+                </div>
+
+              </div>
+            </div>
+            <div class="container-fluid mobOrder">
+              <div class="row orderAll">
+                <div class="col-xs-6">
+                  <p>订单编号：<span>ordernum</span> </p>
+                  <p>下单时间：<span>ordertime</span> </p>
+                  <p>联系电话：<span>phone</span></p>
+                  <p>联系人：<span>orderman</span></p>
+                  <p> 家庭地址：address</p>
+                </div>
+                <div class="col-xs-6">
+                  <p> 服务名字<span>servicename</span></p>
+                  <p> 付款金额：<span>price</span></p>
+                  <p> 订单状态：<span>未付款</span></p>
+                  <p> 服务类型：<span>type</span></p>
+                </div>
+                <div class="col-xs-12">
+                  <button class="btn btn-warning">支付</button>
+                  <button class="btn btn-danger" style=" margin: 10px 0">取消订单</button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              分页位置
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+  <script type="text/javascript" src="../../static/jq.js"></script>
+  <script type="text/javascript" src="../../static/plugins/bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../../static/vue.js"></script>
+  <script type="text/javascript" src="../../static/axios.js"></script>
+  <script type="text/javascript" src="../../static/home/js/index.js"></script>
+  <!-- <script type="text/javascript" src="../../static/home/js/myself.js"></script> -->
+  <script>
+    layui.use('layer', function () {
+      var layer = layui.layer;
+      new Vue({
+        el: '#app',
+        data: {
+          name: '',
+          account: '',
+          regtime: '',
+          phone: '',
+          address: '',
+          pwd: '',
+          newPhone: '',
+          newAddress: '',
+          oldPwd: '',
+          newPwd: '',
+          head: '',
+          headShow: true,
+          phoneShow: true,
+          addrShow: true,
+          pwdShow: true,
+          showInfo: true,
+          showChange: false,
+          showOredr: false,
+          orderList: [],
+        },
+        created() {
+          // 发送 ajax 请求 獲得用戶信息
+          axios.post("getInfo", {
+            id: 1
+          }).then(response => {
+            console.log(response.data) // 得到返回结果数据
+            this.name = response.data.data[0].name; //姓名
+            this.account = response.data.data[0].account; //账号
+            this.regtime = response.data.data[0].regtime; //注册时间
+            this.phone = response.data.data[0].phone; //手机号码
+            this.address = response.data.data[0].address; //地址
+            this.pwd = response.data.data[0].pwd; //密码
+            this.head = response.data.data[0].head; //密码
+          })
+        },
+        methods: {
+          uploadImg() { //修改头像
+            var file = photo.files[0]; //获取图片信息
+            console.log(file);
+            var imgInfo = new FormData();
+            imgInfo.append("filename", file);
+            let config = {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            };
+            axios.post("upload", imgInfo, config).then(response => {
+              console.log(response.data) // 得到返回结果数据
+              this.headShow = true;
+              this.head = response.data.url;
+              // alert(response.data.msg);
+              layer.msg(response.data.msg, {
+                icon: 1
+              });
+            })
+          },
+          changPhone() {
+            var reg = /^[1]{1}[3,5,7,8,9]{1}[0-9]{9}$/;
+            if (this.newPhone.match(reg) != null) {
+              axios.post("changePhone", {
+                phone: this.newPhone
+              }).then(response => {
+                console.log(response.data) // 得到返回结果数据
+                if (response.data.msg == 10000) {
+                  this.phone = this.newPhone;
+                  this.phoneShow = true;
+                  layer.msg(response.data.msg, {
+                    icon: 1
+                  });
+                } else {
+                  layer.msg(response.data.msg, {
+                    icon: 7
+                  });
+                }
+
+              })
+            } else {
+              layer.msg('请输入11位手机号码', {
+                icon: 7
+              });
+            }
+          },
+          changAddress() {
+            if (this.newAddress) {
+              axios.post("changAddress", {
+                address: this.newAddress
+              }).then(response => {
+                console.log(response.data) // 得到返回结果数据
+                if (response.data.msg == 10000) {
+                  this.address = this.newAddress
+                  this.addrShow = true;
+                  layer.msg(response.data.msg, {
+                    icon: 1
+                  });
+
+                } else {
+                  layer.msg(response.data.msg, {
+                    icon: 7
+                  });
+                }
+              })
+            } else {
+              layer.msg('请输入地址', {
+                icon: 7
+              });
+            }
+          },
+          changPwd() {
+            if (this.newPwd && this.oldPwd) {
+              axios.post("changPwd", {
+                pwd: this.newPwd,
+                oldPwd: this.oldPwd
+              }).then(response => {
+                console.log(response.data) // 得到返回结果数据
+                if (response.data.msg == 10000) {
+                  this.pwdShow = true;
+                  this.newPwd = '';
+                  this.oldPwd = '';
+                  layer.msg(response.data.msg, {
+                    icon: 1
+                  });
+                } else {
+                  layer.msg(response.data.msg, {
+                    icon: 7
+                  });
+                }
+              })
+            } else {
+              layer.msg('参数不完整', {
+                icon: 7
+              });
+            }
+          },
+          infoShow() {
+            this.showInfo = true;
+            this.showChange = false;
+            this.showOredr = false;
+            $('.changeLi').eq(0).css('color', 'orange');
+            $('.changeLi').eq(1).css('color', '#333333');
+            $('.changeLi').eq(2).css('color', '#333333');
+          },
+          changeShow() {
+            this.showInfo = false;
+            this.showChange = true;
+            this.showOredr = false;
+            $('.changeLi').eq(1).css('color', 'orange');
+            $('.changeLi').eq(0).css('color', '#333333');
+            $('.changeLi').eq(2).css('color', '#333333');
+          },
+          orderShow() {
+            this.showInfo = false;
+            this.showChange = false;
+            this.showOredr = true;
+            $('.changeLi').eq(0).css('color', '#333333');
+            $('.changeLi').eq(1).css('color', '#333333');
+            $('.changeLi').eq(2).css('color', 'orange');
+            axios.post("getOrder", {
+              status: 1
+              }).then(response => {
+                console.log(response.data) // 得到返回结果数据
+              })
+          },
+          unPay(){ //查看未付款订单
+            $('#unPay').css('color', 'orange');
+            $('#oldPay').css('color', '#333333');
+            axios.post("getOrder", {
+              status: 1
+              }).then(response => {
+                console.log(response.data) // 得到返回结果数据
+              })
+          },
+          oldPay(){  //查看已付款订单
+            $('#unPay').css('color', '#333333');
+            $('#oldPay').css('color', 'orange');
+            $('.pcOrder').html('');
+            axios.post("getOrder", {
+              status: 2
+              }).then(response => {
+                console.log(response.data) // 得到返回结果数据
+              })
+          },
+        },
+      })
+
+    })
+  </script>
+</body>
+
+</html>

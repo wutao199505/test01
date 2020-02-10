@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+
+    <script src="../../../static/echarts.js"></script>
+</head>
+<body>
+    <div style="text-align: center;">
+        选择年份:
+            <select id="year">
+                <option value="2018">2018</option>
+                <option value="2019" selected="">2019</option>
+                <option value="2020">2020</option>
+            </select>
+        <button onclick="makeChart('getUSer','用户报表','注册量')">用户报表</button>
+        <button onclick="makeChart('getMoney','盈利报表','营业额')">营业报表</button>
+    </div>
+    
+     <!-- <button onclick="submitImageBase64()">生成报表</button> -->
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;left: 0;
+    margin-left: 300px;
+    top: 30px;"></div>
+    <script type="text/javascript" src="../../../static/jq.js"></script>
+    <script type="text/javascript">
+        //声明图片64位编码
+        var imagesBase64="";
+        makeChart('getUSer','用户报表','注册量');
+        function makeChart(type, title, des){
+            var year = $("#year").val();
+            $.ajax({
+                type:"POST",
+                url:"/hx1903/Ym-master/public/admin/chart/"+type,
+                data:{type:type,year:year},
+                dataType:"JSON",
+                success:function(res){
+                    chart('main',title, des,res.month, res.sum);
+                }
+            })
+        }
+        function chart(chartId, title, des, month, numbers){
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById(chartId));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: title
+                },
+                tooltip: {},
+                legend: {
+                    data:[des]
+                },
+                xAxis: {
+                    data: month
+                },
+                yAxis: {},
+                series: [{
+                    name: des,
+                    type: 'bar',
+                    data: numbers
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+            //echarts自带的获取图形的base64方法,使用全局变量接收
+            var picBase64Info = myChart.getDataURL(); //获取base64编码
+            imagesBase64=myChart.getDataURL();
+        }
+        
+        // function submitImageBase64(){   
+        //  $.ajax({
+        //              url: "/hx1903/Ym-master/public/admin/chart/getBase64",//使用自己交互到后台的url
+        //              type : "post",
+        //                 data:{
+        //                     'imagesBase64':imagesBase64
+        //                      }, 
+        //                     success : function(res) {
+        //                         if(res.success==1)
+        //                             {   
+        //                                 //下载生成的excel
+        //                                 window.location.href = res.filePath;
+        //                             }
+        //                     },
+        //                     error:function(res) {
+        //                         // layer.close(index);
+        //                         alert("数据导出出错");
+        //                     }
+        //          });
+        // }
+const exportCharts = (fileName) => {
+  if (document.getElementById('main')) {
+    let chartsCanvas = document.getElementById('main').querySelectorAll('canvas')[0]
+    let mime = 'image/png'
+    if (chartsCanvas) {
+      // toDataURL()是canvas对象的一种方法，用于将canvas对象转换为base64位编码
+      let imageUrl = chartsCanvas && chartsCanvas.toDataURL(mime)
+      if (navigator.userAgent.indexOf('Trident') > -1) {
+        // IE11
+        let arr = imageUrl.split(',')
+        // atob() 函数对已经使用base64编码编码的数据字符串进行解码
+        let bstr = atob(arr[1])
+        let bstrLen = bstr.length
+        // Uint8Array, 开辟 8 位无符号整数值的类型化数组。内容将初始化为 0
+        let u8arr = new Uint8Array(bstrLen)
+        while (bstrLen--) {
+          // charCodeAt() 方法可返回指定位置的字符的 Unicode 编码
+          u8arr[bstrLen] = bstr.charCodeAt(bstrLen)
+        }
+        //  msSaveOrOpenBlob 方法允许用户在客户端上保存文件，方法如同从 Internet 下载文件，这是此类文件保存到“下载”文件夹的原因
+        window.navigator.msSaveOrOpenBlob(new Blob([u8arr], {type: mime}), fileName + '.png')
+      } else {
+        // 其他浏览器
+        let $a = document.createElement('a')
+        $a.setAttribute('href', imageUrl)
+        $a.setAttribute('download', fileName)
+        $a.click()
+      }
+    }
+  }
+}
+//调用
+exportCharts('myPic') //导出名为myPic.png的图片
+
+
+
+
+
+    </script>
+</body>
+</html>

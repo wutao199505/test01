@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>问卷星首页</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <header>
+    <nav class="navbar navbar-default">
+    <div id="backbanner" style="height: 460px">
+      <div class="headerDiv">
+        <div class="container ">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <img src="images/logonew.png" class="headimg img-responsive">
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">应用展示 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">问卷调查</a></li>
+                  <li><a href="#">在线考试</a></li>
+                  <li><a href="#">360度评估</a></li>
+                  <li><a href="#">报名表单</a></li>
+                  <li><a href="#">在线测评</a></li>
+                  <li><a href="#">在线投票</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">服务版本 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">企业版服务</a></li>
+                  <li><a href="#">尊享版服务</a></li>
+                  <li><a href="#">企业微信</a></li>
+                </ul>
+              </li>
+              <li><a href="#">样本服务</a></li>
+              <li><a href="#">文件调查模板</a></li>
+            </ul>
+             <ul class="nav navbar-nav navbar-right">
+              <button  type="button" class="btn btn-primary" onclick="loginShow()">登录</button>
+              <button  type="button" class="btn btn-info" onclick="regShow()">注册</button>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <div id="centerbox" >
+          <h1>不止问卷调查 / 在线考试</h1>
+          <h5> 4,383万用户已在问卷星上回收30.49亿份答卷</h5>
+         <button  type="button" class="btn btn-warning ">免费使用</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+<!-- 注册模块Modal -->
+<div class="modal fade" id="regBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style=" margin-top: 133px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title titles" >问卷星注册</h4>
+      </div>
+      <div class="modal-body">
+          <div class="input-group" style="width: 65%;margin: 0 auto">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" class="form-control" placeholder="支持英文与数字，注册后不能修改" aria-describedby="basic-addon1">
+          </div>
+          <div style="height: 20px"></div>
+           <div class="input-group" style="width: 65%;margin: 0 auto">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+            <input type="password" class="form-control" placeholder="8~20位字母、数字或特殊符号" aria-describedby="basic-addon1">
+          </div>
+          <div style="height: 20px"></div>
+          <div class="input-group" style="width: 65%;margin: 0 auto">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-phone"></span></span>
+            <input type="password" class="form-control" placeholder="可通过手机号登录问卷星" aria-describedby="basic-addon1">
+          </div>
+          <div style="height: 20px"></div>
+          <div class="input-group" style="width: 65%;margin: 0 auto;text-align: center;">
+            <p style="text-align: left; "> <a href="#" style="font-size: 18px;color: black;"  >我接受问卷星服务协议</a></p>  
+            <button type="button" class="btn btn-warning btn-lg btn-block" onclick="regUser()">创建用户</button>
+             <div style="height: 20px"></div>
+           <p> <a href="#" style="color: orange; font-size: 18px;" onclick="loginShow()"> 已有账号，立即登录  </a></p> 
+         </div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 登陆模块Modal -->
+<div class="modal fade" id="loginBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-top: 133px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title titles" >问卷星登陆</h4>
+      </div>
+      <div class="modal-body">
+          <div class="input-group" style="width: 65%;margin: 0 auto">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" class="form-control" placeholder="用户名/Email/手机" aria-describedby="basic-addon1">
+          </div>
+          <div style="height: 20px"></div>
+           <div class="input-group" style="width: 65%;margin: 0 auto">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+            <input type="password" class="form-control" placeholder="请输入登录密码" aria-describedby="basic-addon1">
+          </div>
+          <div style="height: 20px"></div>
+          <div class="input-group" style="width: 65%;margin: 0 auto;text-align: center;">
+            <p style="text-align: left; "> <input type="checkbox"><span>下次自动登录 </span> <a href="#" style=" font-size: 14px; color: black; margin-left: 151px;"  >忘记用户名/密码？</a></p>  
+            <button type="button" class="btn btn-warning btn-lg btn-block" onclick="loginUser()">登陆</button>
+             <div style="height: 20px"></div>
+           <p> <a href="#" style="color: orange; font-size: 18px;" onclick="regShow()"> 立即注册 </a></p> 
+         </div> 
+      </div>
+    </div>
+  </div>
+</div>
+  <body>
+    <div class="container content">
+        <div class="row">
+          <div class="col-md-6"><img src="images/survey.png" class="img-responsive"></div>
+          <div class="col-md-6">
+            <h3>问卷调查，从“星”开始</h3>
+            <p>完美集成微信群发、红包抽奖、问卷密码等强大功能，帮您轻松完成市场调查、社会调查、满意度调查等各类在线问卷调查。</p>
+            <ul class="features_one">
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>轻松导入问卷</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>多渠道分发问卷</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>完美适配移动端</li>
+            </ul>
+            <ul class="features_one features_two">
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>原始数据下载</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>自动生成图表</li>
+              <li><span class="glyphicon glyphicon-yen" aria-hidden="true"></span>付费收集答卷</li>
+            </ul>
+            <p>
+               <button  type="button" class="btn btn-primary jieshao">问卷调查介绍</button>
+            </p>
+          </div>
+        </div>
+      
+          <div class="row">
+            <div class="col-md-6">
+              <h3>十分钟搭建您的在线考试系统</h3>
+              <p>深度结合微信考试场景，在教学考试、培训考试、业务考试等领域，问卷星在线考试系统对您大有助益。</p>
+              <ul class="features_one">
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>批量录入试题</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>考试时间控制</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>自定义成绩单</li>
+              </ul>
+              <ul class="features_one features_two">
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>题库随机抽题</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>系统自动阅卷</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>成绩查询系统</li>
+              </ul>
+              <p>
+                 <button  type="button" class="btn btn-warning jieshao">在线考试系统介绍</button>
+              </p>
+            </div>
+             <div class="col-md-6"><img src="images/test.png" class="img-responsive"></div> 
+          </div>
+    </div> 
+    <div class="container content">
+        <div class="row">
+          <div class="col-md-6"><img src="images/360.png" class="img-responsive"></div>
+          <div class="col-md-6">
+            <h3>360度评估，HR必备工具</h3>
+            <p>360度评估操作简单、功能强大，能全方位、多维度评估员工，挖掘员工发展潜力，帮助企业挑选和培养优秀人才。</p>
+            <ul class="features_one">
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>人员名单批量导入</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>维度/权重/部门设置</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>多终端直接作答</li>
+            </ul>
+            <ul class="features_one features_two">
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>一对多批量评估</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>邮件/短信/密码邀请</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>个人/部门详细报告</li>
+            </ul>
+            <p>
+               <button  type="button" class="btn btn-primary jieshao">360度评估介绍</button>
+            </p>
+          </div>
+        </div>     
+          <div class="row">
+            <div class="col-md-6">
+              <h3>报名表单，尽在掌握</h3>
+              <p>报名表单功能总是能让您的工作事半功倍。</p>
+              <ul class="features_one">
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>活动报名</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>微信签到</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>用户信息表</li>
+              </ul>
+              <ul class="features_one features_two">
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>信息收集</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>意见反馈表</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>数据标记查询</li>
+              </ul>
+              <p>
+                 <button  type="button" class="btn btn-warning jieshao">报名表单介绍</button>
+              </p>
+            </div>
+             <div class="col-md-6"><img src="images/form.png" class="img-responsive"></div> 
+          </div>
+    </div> 
+    <div class="container content">
+        <div class="row">
+          <div class="col-md-6"><img src="images/evaluation.png" class="img-responsive"></div>
+          <div class="col-md-6">
+            <h3>轻松拥有在线测评系统</h3>
+            <p>在线测评为您提供了丰富的个性化测评设置空间，专业的功能设置直观展现差异化的测评结果，从而搭建专属您的测评系统。</p>
+            <ul class="features_one">
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>多级维度设置</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>自定义测评结果</li>
+            </ul>
+            <ul class="features_one features_two">
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>标准分差值对比</li>
+              <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>可视化测评数据</li>
+            </ul>
+            <p>
+               <button  type="button" class="btn btn-primary jieshao">在线测评系统介绍</button>
+            </p>
+          </div>
+        </div>     
+          <div class="row">
+            <div class="col-md-6">
+              <h3>简单易上手的在线投票平台</h3>
+              <p>准备好素材，分分钟就可以拥有一个强大的在线投票平台。</p>
+              <ul class="features_one">
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>文字投票</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>视频竞选</li>
+              </ul>
+              <ul class="features_one features_two">
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>图片评选</li>
+                <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>防刷票设置</li>
+              </ul>
+              <p>
+                 <button  type="button" class="btn btn-warning jieshao">在线投票介绍</button>
+              </p>
+            </div>
+             <div class="col-md-6"><img src="images/vote.png" class="img-responsive"></div> 
+          </div>
+    </div> 
+    <div class="foot">
+      <p>长沙冉星信息科技有限公司 版权所有    ICP证:43019002000245    湘ICP备17005436号-1    湘公网安备 43019002000245号
+        <img  src="images/hy_83x30.png" alt="">认证联盟   举报
+      </p>
+      <p>网站数据来源于问卷星官方数据库</p>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(function(){
+          //页面滚动函数
+          $(window).scroll(function(){
+          var otopbtn = $(this).scrollTop()
+            // document.title = otopbtn //在标签处显示当前滚动条的位置值--用来调试滚动条大于多少时修改样式
+            if(otopbtn>30){
+              // 设置滚动条位置大于30时的样式
+              $('.headerDiv').css({            
+                'background-color':"white",
+              })
+            }else{
+              $('.headerDiv').css({
+                'background-color':"transparent",
+            })
+          }
+        })
+     })
+      function regShow(){
+            $("#loginBox").modal("hide");
+            $("#regBox").modal("show");
+      }
+      function loginShow(){
+            $("#loginBox").modal("show");
+            $("#regBox").modal("hide");
+      }
+      function regUser(){
+        msgBox("注册成功",'alertReg','问卷星提示');
+      }
+      function loginUser(){
+        msgBox("登陆成功",'alertLogin','问卷星提示');
+      }
+    function msgBox(content,position,title){
+      var str=`<div class="modal fade" id="`+position+`" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style=" margin-top: 100px;">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">`+title+`</h4>
+                    </div>
+                    <div class="modal-body">
+                     `+content+`
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">好的</button>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+        $("body").append(str);
+        $("#"+position).modal("show");
+    }
+    </script>
+  </body>
+</html>

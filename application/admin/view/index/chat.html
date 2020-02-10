@@ -1,0 +1,64 @@
+﻿ 
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>售后聊天界面</title>
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<link rel="stylesheet" href="/hx1903/Ym-master/public/static/admin/chat/css/reset.min.css">
+<link rel="stylesheet" href="/hx1903/Ym-master/public/static/admin/chat/css/style.css">
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="container">
+        <div class="left">
+            <div class="top">
+                <span>咨询服务人</span>
+            </div>
+            <!-- 打印咨询用户 -->
+            <ul class="people">
+                <!-- <li class="person" sendId="1" onclick="tes(this)">
+                    <img src="/hx1903/Ym-master/public/static/admin/chat/img/thomas.jpg" alt="" />
+                    <span class="name">111</span>
+                    <span class="time">2:09 PM</span>
+                    <span class="preview">I sd,as,das,d'a,s'd,as'd,as',ds,ds,d'as,d'as,dwas wondering...454554545454545454545454545454</span> 
+                </li>
+                <li class="person" data-chat="person" onclick="tes(this)">
+                        <img src="/hx1903/Ym-master/public/static/admin/chat/img/thomas.jpg" alt="" />
+                        <span class="name">Thomas Bangalter</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">I was wondering...</span> 
+                </li> -->
+            </ul>
+        </div>
+        <div class="right">
+            <!-- 聊天头部提示 -->
+            <div class="top"><span><span class="name" id="fromid"></span></span></div>
+            <!-- 聊天窗口 -->
+            <div class="chat" data-chat="person">
+            </div> 
+            <div class="write">
+                <a href="javascript:;" class="write-link attach" id="bu">
+                    <input type="file"  id="file" name="pic">
+                </a>
+                <input type="text" id="msg" />
+                <a href="javascript:;" class="write-link smiley">
+                    <div class="emjon" style="display: none;">
+                        <div id="phiz" style="float:left;" >
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;" class="write-link send"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="admin"></div>
+<script type="text/javascript" src="/hx1903/Ym-master/public/static/admin/js/jquery-1.8.2.min.js"></script>
+<script  src="/hx1903/Ym-master/public/static/admin/chat/js/index.js"></script>
+</body>
+</html>
